@@ -2,8 +2,10 @@
 #include "nwpdlg.h"
 #include "resource.h"
 
+
 class MyDialog : public Dialog 
 {
+public: POINT mouseCoord;
 protected:
 	int IDD()
 	{ 
@@ -27,7 +29,8 @@ protected:
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hp, LPSTR cmdLine, int nShow)
 {
 	MyDialog dlg;
-	// TODO: find current mouse position and transfer to dialog
+	
+	GetCursorPos(&dlg.mouseCoord);
 	if(dlg.DoModal(hInstance, NULL) == IDOK)
 	{
 		// TODO: set mouse position to coordinates from dialog
