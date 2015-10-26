@@ -7,6 +7,7 @@ Napišite program koji podiže ovakav dijalog. U edit se upisuju x i y koordinat
 * Klik na „Cancel“ uvijek zatvara dijalog, 
 * Klik na „OK“ zatvara dijalog samo ako su unešeni brojevi i pomiče kursor na unesene koordinate
 
+![dialog](/v3.jpg?raw=true)
 
 Uputstva:
 * u resursima kreirajte dijalog, id mu može ostati IDD_DIALOG1
