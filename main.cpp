@@ -4,6 +4,8 @@
 
 class MyDialog : public Dialog 
 {
+public:
+	POINT t1;
 protected:
 	int IDD()
 	{ 
@@ -11,14 +13,22 @@ protected:
 	}
 	bool OnInitDialog()
 	{
-		// TODO: set initial values to edit controls
+		SetInt(IDC_EDIT1, t1.x);
+		SetInt(IDC_EDIT2, t1.y);
 		return true;
 	}
 	bool OnOK()
 	{
-		// TODO: get current values from edit controls
-		// TODO: if not valid return false
-		return true;
+		try
+		{
+			t1.x = GetInt(IDC_EDIT1);
+			t1.y = GetInt(IDC_EDIT2);
+			return true;
+		}
+		catch (XCtrl e)
+		{
+			return false;
+		}		
 	}
 	void OnCancel()	{ }
 	bool OnCommand(int id, int code) { return false; }
@@ -27,10 +37,14 @@ protected:
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hp, LPSTR cmdLine, int nShow)
 {
 	MyDialog dlg;
-	// TODO: find current mouse position and transfer to dialog
+	GetCursorPos(&dlg.t1);
+	
 	if(dlg.DoModal(hInstance, NULL) == IDOK)
 	{
-		// TODO: set mouse position to coordinates from dialog
+		GetCursorPos(&dlg.t1);
 	}
 	return 0;
 }
+
+
+
