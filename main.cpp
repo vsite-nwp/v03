@@ -20,8 +20,16 @@ protected:
 	}
 	bool OnOK()
 	{
+		try {
 		// TODO: get current values from edit controls
+		p.x = GetInt(IDC_EDIT1);
+		p.y = GetInt(IDC_EDIT2);
 		// TODO: if not valid return false
+		}
+		catch(XCtrl){
+			MessageBox(*this, "Unos ne valja.", "NWP 3", MB_OK);
+			return false;
+		}
 		return true;
 	}
 	void OnCancel()	{ }
