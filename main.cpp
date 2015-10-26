@@ -13,7 +13,8 @@ protected:
 	}
 	bool OnInitDialog()
 	{
-		// TODO: set initial values to edit controls
+		SetInt(IDC_EDIT1, mouseCoord.x);
+		SetInt(IDC_EDIT2, mouseCoord.y);
 		return true;
 	}
 	bool OnOK()
