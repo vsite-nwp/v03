@@ -22,11 +22,14 @@ protected:
 	bool OnOK()
 	{
 		// TODO: get current values from edit controls
-		cords.x = GetInt(IDC_EDIT1);
-		cords.y = GetInt(IDC_EDIT2);
-
-
-		// TODO: if not valid return false
+		try{
+			cords.x = GetInt(IDC_EDIT1);
+			cords.y = GetInt(IDC_EDIT2);
+		}
+		catch (XCtrl&){		// TODO: if not valid return false
+			MessageBox(*this, "Only numbers!!", "Try again", MB_OK | MB_ICONEXCLAMATION );
+			return false;
+		}
 		return true;
 	}
 	void OnCancel()	{ }
@@ -36,12 +39,12 @@ protected:
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hp, LPSTR cmdLine, int nShow)
 {
 	MyDialog dlg;
-	// TODO: find current mouse position and transfer to dialog	/pokupi i prosljedi u dijalog
-	GetCursorPos(&dlg.cords);
+	
+	GetCursorPos(&dlg.cords);		// TODO: find current mouse position and transfer to dialog
 
 	if(dlg.DoModal(hInstance, NULL) == IDOK)
 	{
-		// TODO: set mouse position to coordinates from dialog	//setcurpos na te kordinare
+		// TODO: set mouse position to coordinates from dialog
 		SetCursorPos(dlg.cords.x, dlg.cords.y);
 	}
 	return 0;
