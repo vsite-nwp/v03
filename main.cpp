@@ -2,8 +2,10 @@
 #include "nwpdlg.h"
 #include "resource.h"
 
+
 class MyDialog : public Dialog 
 {
+public: POINT mouseCoord;
 protected:
 	int IDD()
 	{ 
@@ -11,14 +13,25 @@ protected:
 	}
 	bool OnInitDialog()
 	{
-		// TODO: set initial values to edit controls
+		SetInt(IDC_EDIT1, mouseCoord.x);
+		SetInt(IDC_EDIT2, mouseCoord.y);
 		return true;
 	}
 	bool OnOK()
 	{
-		// TODO: get current values from edit controls
-		// TODO: if not valid return false
+		try
+		{
+			mouseCoord.x = GetInt(IDC_EDIT1);
+			mouseCoord.y = GetInt(IDC_EDIT2);
+			
+		}
+		catch (XCtrl e)
+		{
+			return false;
+		}
+
 		return true;
+		
 	}
 	void OnCancel()	{ }
 	bool OnCommand(int id, int code) { return false; }
@@ -27,10 +40,13 @@ protected:
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hp, LPSTR cmdLine, int nShow)
 {
 	MyDialog dlg;
-	// TODO: find current mouse position and transfer to dialog
+	
+	GetCursorPos(&dlg.mouseCoord);
+
 	if(dlg.DoModal(hInstance, NULL) == IDOK)
 	{
-		// TODO: set mouse position to coordinates from dialog
+		SetCursorPos(dlg.mouseCoord.x, dlg.mouseCoord.y);
+		
 	}
 	return 0;
 }
