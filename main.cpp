@@ -24,7 +24,7 @@ protected:
 			cords.x = GetInt(IDC_EDIT1);
 			cords.y = GetInt(IDC_EDIT2);
 		}
-		catch (XCtrl&){	//kom
+		catch (XCtrl&){
 			MessageBox(*this, "Only numbers!!", "Try again", MB_OK | MB_ICONEXCLAMATION );
 			return false;
 		}
