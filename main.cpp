@@ -23,13 +23,15 @@ protected:
 		{
 			mouseCoord.x = GetInt(IDC_EDIT1);
 			mouseCoord.y = GetInt(IDC_EDIT2);
+			
 		}
-		catch (...)
+		catch (XCtrl e)
 		{
 			return false;
 		}
-		
+
 		return true;
+		
 	}
 	void OnCancel()	{ }
 	bool OnCommand(int id, int code) { return false; }
