@@ -25,8 +25,8 @@ protected:
 			p.x =GetInt( IDC_EDIT1);
 			p.y = GetInt(IDC_EDIT2);
 		}
-		catch (XCtrl&) {
-			MessageBox(*this, "Upisite samo  brojeve", 0, MB_OK);
+		catch (XCtrl) {
+			MessageBox(*this, "Upisite samo  brojeve",NULL, MB_OK | MB_APPLMODAL );
 			
 			return false;
 		}
@@ -39,15 +39,9 @@ protected:
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hp, LPSTR cmdLine, int nShow)
 {
 	MyDialog dlg;
-	POINT CurPos;
 
-	 GetCursorPos(&CurPos);
-	   dlg.p.x = CurPos.x;
-	   dlg.p.y = CurPos.y;
-
-	
-
-
+	 GetCursorPos(&dlg.p);
+	   
 	if(dlg.DoModal(hInstance, NULL) == IDOK)
 	{
 		
