@@ -15,16 +15,16 @@ protected:
 	{
 		SetInt(IDC_EDIT1,p.x);
 		SetInt(IDC_EDIT2,p.y);
-		// TODO: set initial values to edit controls
+		
 		return true;
 	}
 	bool OnOK()
 	{
-		// TODO: get current values from edit controls
+		
 		try {
 				p.x = GetInt(IDC_EDIT1);
 				p.y = GetInt(IDC_EDIT2);
-			// TODO: if not valid return false
+			
 		} catch(XCtrl) {
 		
 			MessageBox(*this, "Dozvoljeni su samo brojevi!!", "Lab 3", MB_APPLMODAL);
@@ -40,14 +40,14 @@ protected:
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hp, LPSTR cmdLine, int nShow)
 {
 	MyDialog dlg;
-	GetCursorPos(&dlg.p);// TODO: find current mouse position and transfer to dialog
+	GetCursorPos(&dlg.p);
 	if(dlg.DoModal(hInstance, NULL) == IDOK)
 	{	
 		int x = dlg.p.x;
 		int y = dlg.p.y;
 
 		SetCursorPos(x,y);
-		// TODO: set mouse position to coordinates from dialog
+		
 	}
 	return 0;
 }
