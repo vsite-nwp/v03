@@ -21,9 +21,16 @@ protected:
 	bool OnOK()
 	{
 		// TODO: get current values from edit controls
-		p.x=GetInt(IDC_EDIT1);
-		p.y=GetInt(IDC_EDIT2);
-		// TODO: if not valid return false
+		try {
+				p.x = GetInt(IDC_EDIT1);
+				p.y = GetInt(IDC_EDIT2);
+			// TODO: if not valid return false
+		} catch(XCtrl) {
+		
+			MessageBox(*this, "Dozvoljeni su samo brojevi!!", "Lab 3", MB_APPLMODAL);
+			return false;
+			
+		}
 		return true;
 	}
 	void OnCancel()	{  }
