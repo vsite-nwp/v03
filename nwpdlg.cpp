@@ -40,7 +40,7 @@ void Dialog::SetInt(int idCtrl, int val)
 	SetDlgItemInt(*this, idCtrl, val, true);
 }
 
-int Dialog::GetInt(int idCtrl) 
+int Dialog::GetInt(int idCtrl)
 {
 	BOOL b;
 	int n = GetDlgItemInt(*this, idCtrl, &b, true);
