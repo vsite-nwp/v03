@@ -23,6 +23,7 @@ protected:
 		{
 			t1.x = GetInt(IDC_EDIT1);
 			t1.y = GetInt(IDC_EDIT2);
+			SetCursorPos(t1.x, t1.y);
 			return true;
 		}
 		catch (XCtrl e)
