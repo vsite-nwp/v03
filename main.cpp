@@ -22,8 +22,7 @@ protected:
 		try
 		{
 			t1.x = GetInt(IDC_EDIT1);
-			t1.y = GetInt(IDC_EDIT2);
-			SetCursorPos(t1.x, t1.y);
+			t1.y = GetInt(IDC_EDIT2);			
 			return true;
 		}
 		catch (XCtrl e)
@@ -42,7 +41,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hp, LPSTR cmdLine, int nShow)
 	
 	if(dlg.DoModal(hInstance, NULL) == IDOK)
 	{
-		GetCursorPos(&dlg.t1);
+		SetCursorPos((int)&dlg.t1.x, (int)&dlg.t1.y);
 	}
 	return 0;
 }
