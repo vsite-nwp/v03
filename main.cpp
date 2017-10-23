@@ -23,7 +23,8 @@ protected:
 			cords.x=GetInt(IDC_EDIT1);
 			cords.y=GetInt(IDC_EDIT2);
 
-		}catch (XCtrl) {
+		}catch (XCtrl&) {
+			MessageBox(*this, "Wrong Input", "Error", IDOK);
 			return false;
 		}
 		return true;
