@@ -24,7 +24,7 @@ protected:
 			coors.x = GetInt(IDC_EDIT1);
 			coors.y = GetInt(IDC_EDIT2);
 		}
-		catch (XCtrl)
+		catch (XCtrl&)
 		{
 			return false;
 		}
@@ -41,7 +41,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hp, LPSTR cmdLine, int nShow)
 	if(dlg.DoModal(hInstance, NULL) == IDOK)
 	{
 		SetCursorPos(dlg.coors.x, dlg.coors.y);
-		// TODO: set mouse position to coordinates from dialog
 	}
 	return 0;
 }
