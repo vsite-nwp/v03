@@ -13,7 +13,6 @@ protected:
 	}
 	bool OnInitDialog()
 	{
-		// TODO: set initial values to edit controls
 		
 		SetInt(IDC_EDIT1, cord.x);
 		SetInt(IDC_EDIT2, cord.y);
@@ -21,7 +20,6 @@ protected:
 	}
 	bool OnOK()
 	{
-		// TODO: get current values from edit controls
 		try {
 			
 			cord.x =GetInt(IDC_EDIT1);
@@ -29,7 +27,6 @@ protected:
 		}
 		catch (XCtrl) {return false; }
 	
-		// TODO: if not valid return false
 		return true;
 	}
 	void OnCancel()	{ }
@@ -39,11 +36,9 @@ protected:
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hp, LPSTR cmdLine, int nShow)
 {
 	MyDialog dlg;
-	// TODO: find current mouse position and transfer to dialog
 		GetCursorPos(&dlg.cord);
 	if(dlg.DoModal(hInstance, NULL) == IDOK)
 	{
-		// TODO: set mouse position to coordinates from dialog
 		SetCursorPos(dlg.cord.x, dlg.cord.y);
 	}
 	return 0;
