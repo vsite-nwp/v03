@@ -36,7 +36,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hp, LPSTR cmdLine, int nShow)
 {
 	MyDialog dlg;
 	// TODO: find current mouse position and transfer to dialog
-	SendDlgItemMessage(dlg.operator HWND, IDD_DIALOG1, GetCursorPos(dlg.xy), NULL, NULL);
+	//SendDlgItemMessage(dlg.operator HWND, IDD_DIALOG1, GetCursorPos(dlg.xy), NULL, NULL);
+	SetDlgItemInt(dlg.operator HWND, IDD_DIALOG1, GetCursorPos(dlg.xy), true);
 	if(dlg.DoModal(hInstance, NULL) == IDOK)
 	{
 		// TODO: set mouse position to coordinates from dialog
