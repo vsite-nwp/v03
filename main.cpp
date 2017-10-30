@@ -21,7 +21,11 @@ protected:
 	bool OnOK()
 	{
 		// TODO: get current values from edit controls
+		GetInt(IDC_EDIT1);
+		GetInt(IDC_EDIT2);
 		// TODO: if not valid return false
+		if (GetInt(IDC_EDIT1) == NULL || GetInt(IDC_EDIT2) == NULL)
+			return false;
 		return true;
 	}
 	void OnCancel()	{ }
