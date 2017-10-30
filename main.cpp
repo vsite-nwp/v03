@@ -21,11 +21,14 @@ protected:
 	bool OnOK()
 	{
 		// TODO: get current values from edit controls
+		try {
 		xy.x = GetInt(IDC_EDIT1);
 		xy.y = GetInt(IDC_EDIT2);
+		}
 		// TODO: if not valid return false
-		if (GetInt(IDC_EDIT1) == NULL || GetInt(IDC_EDIT2) == NULL)
+		catch (XCtrl) {
 			return false;
+		}
 		return true;
 	}
 	void OnCancel()	{ }
