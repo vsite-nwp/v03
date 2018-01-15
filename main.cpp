@@ -2,6 +2,8 @@
 #include "nwpdlg.h"
 #include "resource.h"
 
+
+
 class MyDialog : public Dialog 
 {
 public:
