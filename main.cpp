@@ -26,7 +26,7 @@ protected:
 			mos_pos.x = GetInt(IDC_EDIT1);
 			mos_pos.y = GetInt(IDC_EDIT2);
 		}
-		catch (XCtrl ex) {
+		catch (XCtrl &) {
 			return false;
 		}
 
