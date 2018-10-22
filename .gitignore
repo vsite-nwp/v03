@@ -1,2 +1,10 @@
 ﻿
 /Debug
+/Release
+*.ipch
+*.db
+*.opendb
+*.json
+*.sqlite
+*.suo
+*.user
