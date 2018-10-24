@@ -18,8 +18,8 @@ protected:
 	bool OnOK()
 	{
 		try {
-			int x = GetInt(IDC_EDIT1);
-			int y = GetInt(IDC_EDIT2);
+			curpos.x = GetInt(IDC_EDIT1);
+			curpos.y = GetInt(IDC_EDIT2);
 		}
 		catch (XCtrl) { return false; }
 		return true;
