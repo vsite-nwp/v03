@@ -40,7 +40,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hp, LPSTR cmdLine, int nShow)
 	GetCursorPos(&dlg.point);
 	if(dlg.DoModal(hInstance, NULL) == IDOK)
 	{
-		SetCursorPos(dlg.point.x,dlg.point.y);
+		SetCursorPos(dlg.point.x,dlg.point.y); 
 	}
 	return 0;
 }
