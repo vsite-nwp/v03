@@ -13,8 +13,6 @@ protected:
 	}
 	bool OnInitDialog()
 	{
-		point.x = 0;
-		point.y = 0;
 		SetInt(IDC_EDIT1, point.x);
 		SetInt(IDC_EDIT2, point.y);
 		return true;
