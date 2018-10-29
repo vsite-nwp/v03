@@ -17,12 +17,18 @@ protected:
 		SetInt(IDC_EDIT2, p.y);
 		return true;
 	}
-	bool OnOK()
-	{
-		p.x = GetInt(IDC_EDIT1);
-		p.y = GetInt(IDC_EDIT2);
+	bool OnOK() {
+		try
+		{
+			p.x = GetInt(IDC_EDIT1);
+			p.y = GetInt(IDC_EDIT2);
+		}
+		catch (XCtrl) {
+			return false;
+		}
 		return true;
 	}
+
 	void OnCancel()	{ }
 	bool OnCommand(int id, int code) { return false; }
 };
