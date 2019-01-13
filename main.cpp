@@ -20,8 +20,8 @@ protected:
 	bool OnOK()
 	{
 		try {
-			GetInt(IDC_EDIT1);
-			GetInt(IDC_EDIT2);
+			mousePosition.x=GetInt(IDC_EDIT1);
+			mousePosition.y=GetInt(IDC_EDIT2);
 		}
 		catch (XCtrl&) {
 			return false;
