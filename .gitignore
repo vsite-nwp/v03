@@ -1,10 +1,5 @@
-﻿
-/Debug
+﻿/Debug
 /Release
-*.ipch
-*.db
-*.opendb
-*.json
-*.sqlite
-*.suo
+/.vs
 *.user
+*.aps
