@@ -45,8 +45,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hp, LPSTR cmdLine, int nShow)
 	if(dlg.DoModal(hInstance, NULL) == IDOK)
 	{
 		SetCursorPos(dlg.poz.x, dlg.poz.y);
-		EndDialog(dlg, IDD_DIALOG1 );
-
 	}
 	return 0;
 }
