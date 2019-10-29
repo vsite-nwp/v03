@@ -21,8 +21,8 @@ protected:
 	{
 		try
 		{
-			GetInt(IDC_EDIT1);
-			GetInt(IDC_EDIT2);
+			mouseCursor.x = GetInt(IDC_EDIT1);
+			mouseCursor.y = GetInt(IDC_EDIT2);
 		}
 		catch (XCtrl&)
 		{
