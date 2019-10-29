@@ -19,8 +19,8 @@ protected:
 	bool OnOK()
 	{
 		try {
-			GetInt(IDC_EDIT1);
-			GetInt(IDC_EDIT2);
+			mouse.x=GetInt(IDC_EDIT1);
+			mouse.y=GetInt(IDC_EDIT2);
 		}
 		catch (XCtrl&) {
 			return false;
