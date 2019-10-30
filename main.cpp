@@ -19,10 +19,13 @@ protected:
 	}
 	bool OnOK()
 	{
-		cursor.x = GetInt(IDC_EDIT1);
-		cursor.y = GetInt(IDC_EDIT2);
-		if (cursor.x == NULL || cursor.y == NULL)
-			return false;
+		try
+		{
+			cursor.x = GetInt(IDC_EDIT1);
+			cursor.y = GetInt(IDC_EDIT2);
+		}
+		catch (XCtrl){ return false; }
+			
 		return true;
 	}
 	void OnCancel()	{ }
