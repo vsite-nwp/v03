@@ -4,6 +4,8 @@
 
 class MyDialog : public Dialog 
 {
+public:
+	POINT cursor;
 protected:
 	int IDD()
 	{ 
@@ -11,13 +13,21 @@ protected:
 	}
 	bool OnInitDialog()
 	{
-		// TODO: set initial values to edit controls
+		SetInt(IDC_EDIT1, cursor.x);
+		SetInt(IDC_EDIT2, cursor.y);
 		return true;
 	}
 	bool OnOK()
 	{
-		// TODO: get current values from edit controls
-		// TODO: if not valid return false
+		try
+		{
+			cursor.x = GetInt(IDC_EDIT1);
+			cursor.y = GetInt(IDC_EDIT2);
+		}
+		catch (XCtrl)
+		{
+			return false;
+		}
 		return true;
 	}
 	void OnCancel()	{ }
