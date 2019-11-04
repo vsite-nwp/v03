@@ -13,15 +13,19 @@ protected:
 	}
 	bool OnInitDialog()
 	{
-		// TODO: set initial values to edit controls
 		SetInt(IDC_EDIT1, dot.x);
 		SetInt(IDC_EDIT2, dot.y);
 		return true;
 	}
 	bool OnOK()
 	{
-		// TODO: get current values from edit controls
-		// TODO: if not valid return false
+		try {
+			dot.x = GetInt(IDC_EDIT1);
+			dot.y = GetInt(IDC_EDIT2);
+		}
+		catch (XCtrl&) {
+			return false;
+		}
 		return true;
 	}
 	void OnCancel()	{ }
