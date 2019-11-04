@@ -4,6 +4,8 @@
 
 class MyDialog : public Dialog 
 {
+public:
+	POINT dot;
 protected:
 	int IDD()
 	{ 
@@ -12,6 +14,8 @@ protected:
 	bool OnInitDialog()
 	{
 		// TODO: set initial values to edit controls
+		SetInt(IDC_EDIT1, dot.x);
+		SetInt(IDC_EDIT2, dot.y);
 		return true;
 	}
 	bool OnOK()
