@@ -4,6 +4,8 @@
 
 class MyDialog : public Dialog 
 {
+public:
+	POINT pozicija;
 protected:
 	int IDD()
 	{ 
