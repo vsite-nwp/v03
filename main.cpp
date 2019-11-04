@@ -18,13 +18,19 @@ protected:
 		SetInt(IDC_EDIT2, kordinata.y);
 		return true;
 	}
-	bool OnOK()
-	{
-		kordinata.x = GetInt(IDC_EDIT1);
-		kordinata.y = GetInt(IDC_EDIT2);
-		
-		return true;
+	bool OnOK() {
+		try {
+			kordinata.x = GetInt(IDC_EDIT1);
+			kordinata.y = GetInt(IDC_EDIT2);
+
+		}
+		catch(XCtrl){
+			return false;
+
+		}
 	}
+
+	
 	void OnCancel()	{ }
 	bool OnCommand(int id, int code) { return false; }
 };

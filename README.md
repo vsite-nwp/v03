@@ -20,5 +20,5 @@ Uputstva:
 * ako DoModal vrati IDOK dijalog je zatvoren sa „OK“
 * poziciju kursora možete postaviti sa [SetCursorPos](https://msdn.microsoft.com/en-us/library/windows/desktop/ms648394%28v=vs.85%29.aspx)
 
-
+	
 
