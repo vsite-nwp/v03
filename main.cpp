@@ -1,6 +1,7 @@
 #include <windows.h>
 #include "nwpdlg.h"
 #include "resource.h"
+
 class MyDialog : public Dialog
 {
 public:
@@ -12,16 +13,16 @@ protected:
 	}
 	bool OnInitDialog()
 	{
-		SetInt(IDC_EDIT1, mPosition.x);
-		SetInt(IDC_EDIT2, mPosition.y);
+		SetInt(IDC_EDIT1, mseCrsr.x);
+		SetInt(IDC_EDIT2, mseCrsr.y);
 		return true;
 	}
 	bool OnOK()
 	{
 		try
 		{
-			mPosition.x = GetInt(IDC_EDIT1);
-			mPosition.y = GetInt(IDC_EDIT2);
+			mseCrsr.x = GetInt(IDC_EDIT1);
+			mseCrsr.y = GetInt(IDC_EDIT2);
 		}
 		catch (XCtrl&)
 		{
@@ -31,35 +32,16 @@ protected:
 	}
 	void OnCancel() { }
 	bool OnCommand(int id, int code) { return false; }
-public:
-	POINT* operator*()
-	{
-		return &mPosition;
-	}
-
-	bool UpdatePos()
-	{
-		if (SetCursorPos(mPosition.x, mPosition.y) == 0)
-		{
-			return false;
-		}
-		return true;
-	}
-private:
-	POINT mPosition;
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hp, LPSTR cmdLine, int nShow)
 {
 	MyDialog dlg;
-	GetCursorPos(*dlg);
+	GetCursorPos(&dlg.mseCrsr);
 
 	if (dlg.DoModal(hInstance, NULL) == IDOK)
 	{
-		SetCursorPos(
-			dlg.mseCrsr.x,
-			dlg.mseCrsr.y
-		);
+		SetCursorPos(dlg.mseCrsr.x, dlg.mseCrsr.y);
 	}
 	return 0;
 }
