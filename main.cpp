@@ -18,10 +18,10 @@ protected:
 	bool OnOK()
 	{
 		try {
-			p.x = GetInt(IDC_EDIT1);
-			p.y = GetInt(IDC_EDIT2);
+			GetInt(IDC_EDIT1);
+			GetInt(IDC_EDIT2);
 		}
-		catch {
+		catch (XCtrl&) {
 			return false;
 		}
 		return true;
@@ -35,10 +35,10 @@ public:
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hp, LPSTR cmdLine, int nShow)
 {
 	MyDialog dlg;
-	p = GetCursorPos();
+	GetCursorPos(&dlg.p);
 	if(dlg.DoModal(hInstance, NULL) == IDOK)
 	{
-		SetCursorPos(dlg.p.x, dlg.p.y);
+		SetCursorPos(&dlg.p.x, &dlg.p.y);
 	}
 	return 0;
 }
