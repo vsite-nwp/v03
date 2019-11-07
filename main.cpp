@@ -18,8 +18,8 @@ protected:
 	bool OnOK()
 	{
 		try {
-			GetInt(IDC_EDIT1);
-			GetInt(IDC_EDIT2);
+			point.x = GetInt(IDC_EDIT1);
+			point.y = GetInt(IDC_EDIT2);
 		}
 		catch (XCtrl&) { return false; }
 		return true;
@@ -36,7 +36,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hp, LPSTR cmdLine, int nShow)
 	GetCursorPos(&dlg.point);
 	if(dlg.DoModal(hInstance, NULL) == IDOK)
 	{
-		SetCursorPos(&dlg.point.x, &dlg.point.y;);
+		SetCursorPos(dlg.point.x, dlg.point.y);
 	}
 	return 0;
 }
