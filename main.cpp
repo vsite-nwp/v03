@@ -19,9 +19,11 @@ protected:
 	}
 	bool OnOK()
 	{
-		// TODO: get current values from edit controls
-		// TODO: if not valid return false
-		
+		try {
+			p.x = GetInt(IDC_EDIT1);
+			p.y = GetInt(IDC_EDIT2);
+		}
+		catch (XCtrl e) { return false; }
 		return true;
 	}
 	void OnCancel()	{ }
