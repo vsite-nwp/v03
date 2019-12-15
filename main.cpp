@@ -4,6 +4,8 @@
 
 class MyDialog : public Dialog 
 {
+public:
+	POINT p;
 protected:
 	int IDD()
 	{ 
@@ -18,6 +20,7 @@ protected:
 	{
 		// TODO: get current values from edit controls
 		// TODO: if not valid return false
+		
 		return true;
 	}
 	void OnCancel()	{ }
@@ -27,6 +30,8 @@ protected:
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hp, LPSTR cmdLine, int nShow)
 {
 	MyDialog dlg;
+	//&dlg.pos
+
 	// TODO: find current mouse position and transfer to dialog
 	if(dlg.DoModal(hInstance, NULL) == IDOK)
 	{
