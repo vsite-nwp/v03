@@ -6,7 +6,7 @@ class MyDialog : public Dialog
 {
 public:
 	POINT p;
-	bool flag;
+	
 protected:
 	int IDD()
 	{ 
@@ -19,16 +19,22 @@ protected:
 	}
 	bool OnOK()
 	{
-		BOOL b1 = false;
-		BOOL b2 = false;
-		p.x = GetDlgItemInt(*this, IDC_EDIT1, &b1, false);
-		p.y = GetDlgItemInt(*this, IDC_EDIT2, &b2, false);
-		flag = b1 && b2;
-		if (!b1) {
-			p.x = 0;
+		bool flag=true;
+		try {
+			p.x = GetInt(IDC_EDIT1);
 		}
-		if (!b2) {
+		catch (XCtrl ex)
+		{
+			p.x = 0;
+			flag = false;
+		}
+		try {
+			p.y = GetInt(IDC_EDIT2);
+		}
+		catch (XCtrl ex)
+		{
 			p.y = 0;
+			flag = false;
 		}
 		Postavi(IDC_EDIT1, IDC_EDIT2, p.x, p.y);
 		return flag;
@@ -36,8 +42,9 @@ protected:
 	void OnCancel()	{ EndDialog(*this, 2); }
 	bool OnCommand(int id, int code) { return false; }
 private:
-	bool Postavi(int id1, int id2, int value1, int value2) {
-		return (SetDlgItemInt(*this, id1, value1, false) && SetDlgItemInt(*this, id2, value2, false));
+	void Postavi(int id1, int id2, int value1, int value2) {
+		SetInt(id1, value1); 
+		SetInt(id2, value2);
 	}
 
 };
