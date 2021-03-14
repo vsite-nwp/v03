@@ -1,21 +1,24 @@
-class XCtrl {};
 
-class Dialog
+namespace vsite::nwp {
+
+class dialog
 {
 	HWND hw;
 public:
-	static int CALLBACK Proc(HWND hw, UINT msg, WPARAM wp, LPARAM lp);
+	static int CALLBACK proc(HWND hw, UINT msg, WPARAM wp, LPARAM lp);
 	operator HWND() const { return hw; }
-	int DoModal(HINSTANCE, HWND parent=0);
+	int do_modal(HINSTANCE, HWND parent = 0);
 protected:
 //	operations
-	void SetInt(int idCtrl, int val);
-	int GetInt(int idCtrl) throw (XCtrl);
+	void set_int(int id_ctrl, int val);
+	int get_int(int id_ctrl); // throws std::runtime_error
 
 //	overridables
-	virtual int IDD() = 0;
-	virtual bool OnInitDialog() { return false; }
-	virtual bool OnCommand(int id, int code) { return false; }
-	virtual bool OnOK() { return true; }
-	virtual void OnCancel() { }
+	virtual int idd() const = 0;
+	virtual bool on_init_dialog() { return false; }
+	virtual bool on_command(int id, int code) { return false; }
+	virtual bool on_ok() { return true; }
+	virtual void on_cancel() { }
 };
+
+} // namespace

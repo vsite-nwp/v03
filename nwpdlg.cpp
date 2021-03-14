@@ -1,49 +1,54 @@
 #include <windows.h>
 #include "nwpdlg.h"
 #include <map>
+#include <stdexcept>
 
-int CALLBACK Dialog::Proc(HWND hw, UINT msg, WPARAM wp, LPARAM lp)
+namespace vsite::nwp {
+
+int CALLBACK dialog::proc(HWND hw, UINT msg, WPARAM wp, LPARAM lp)
 {
-	static std::map<HWND, Dialog*> wmap;
-	if(msg == WM_INITDIALOG)
+	static std::map<HWND, dialog*> wmap;
+	if (msg == WM_INITDIALOG)
 	{
-		Dialog* pThis = reinterpret_cast<Dialog*>(lp);
-		pThis->hw = hw;
-		wmap[hw] = pThis; 
-		return pThis->OnInitDialog();
+		dialog* pd = reinterpret_cast<dialog*>(lp);
+		pd->hw = hw;
+		wmap[hw] = pd;
+		return pd->on_init_dialog();
 	}
-	Dialog* pThis = wmap[hw];
-	if(msg == WM_COMMAND)
+	dialog* pd = wmap[hw];
+	if (msg == WM_COMMAND)
 	{
-		if(LOWORD(wp) == IDOK && pThis->OnOK())
-			return EndDialog(hw, IDOK);
-		if(LOWORD(wp) == IDCANCEL)
+		if (LOWORD(wp) == IDOK && pd->on_ok())
+			return ::EndDialog(hw, IDOK);
+		if (LOWORD(wp) == IDCANCEL)
 		{
-			pThis->OnCancel();
-			return EndDialog(hw, IDCANCEL);
+			pd->on_cancel();
+			return ::EndDialog(hw, IDCANCEL);
 		}
-		return pThis->OnCommand(LOWORD(wp), HIWORD(wp));
+		return pd->on_command(LOWORD(wp), HIWORD(wp));
 	}
-	if(msg == WM_DESTROY)
+	if (msg == WM_DESTROY)
 		wmap.erase(hw);
 	return 0;
 }
 
-int Dialog::DoModal(HINSTANCE hInst, HWND parent)
+int dialog::do_modal(HINSTANCE hInst, HWND parent)
 {
-	return DialogBoxParam(hInst, MAKEINTRESOURCE(IDD()), parent, Proc, 
+	return ::DialogBoxParam(hInst, MAKEINTRESOURCE(idd()), parent, proc,
 		reinterpret_cast<LPARAM>(this));
 }
 
-void Dialog::SetInt(int idCtrl, int val)
+void dialog::set_int(int idCtrl, int val)
 {
-	SetDlgItemInt(*this, idCtrl, val, true);
+	::SetDlgItemInt(*this, idCtrl, val, true);
 }
 
-int Dialog::GetInt(int idCtrl) 
+int dialog::get_int(int idCtrl)
 {
 	BOOL b;
-	int n = GetDlgItemInt(*this, idCtrl, &b, true);
-	if(!b) throw XCtrl();
+	int n = ::GetDlgItemInt(*this, idCtrl, &b, true);
+	if (!b) throw std::runtime_error("not a number");
 	return n;
 }
+
+} // namespace

@@ -2,33 +2,33 @@
 #include "nwpdlg.h"
 #include "resource.h"
 
-class MyDialog : public Dialog 
+class main_dialog : public vsite::nwp::dialog 
 {
 protected:
-	int IDD()
+	int idd() const override
 	{ 
 		return IDD_DIALOG1; 
 	}
-	bool OnInitDialog()
+	bool on_init_dialog() override
 	{
 		// TODO: set initial values to edit controls
 		return true;
 	}
-	bool OnOK()
+	bool on_ok() override
 	{
 		// TODO: get current values from edit controls
 		// TODO: if not valid return false
 		return true;
 	}
-	void OnCancel()	{ }
-	bool OnCommand(int id, int code) { return false; }
+	void on_cancel() override { }
+	bool on_command(int id, int code) override { return false; }
 };
 
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hp, LPSTR cmdLine, int nShow)
+int WINAPI WinMain(HINSTANCE instance, HINSTANCE, LPSTR, int)
 {
-	MyDialog dlg;
+	main_dialog dlg;
 	// TODO: find current mouse position and transfer to dialog
-	if(dlg.DoModal(hInstance, NULL) == IDOK)
+	if(dlg.do_modal(instance, 0) == IDOK)
 	{
 		// TODO: set mouse position to coordinates from dialog
 	}
