@@ -2,6 +2,7 @@
 #include "nwpdlg.h"
 #include "resource.h"
 #include <exception> 
+#include <stdexcept>
 class main_dialog : public vsite::nwp::dialog
 {
 public:
@@ -22,11 +23,13 @@ protected:
 	}
 	bool on_ok() override
 	{
+
 		try {
 			point.x = get_int(IDC_EDIT1);
 			point.y = get_int(IDC_EDIT2);
+			return true;
 		}
-		catch (runtime_error& e)
+		catch (std::runtime_error& e) {
 			return false;
 		}
 
@@ -34,7 +37,6 @@ protected:
 		//	return false;
 		//}
 
-		return true;
 	}
 	void on_cancel() override { }
 	bool on_command(int id, int code) override { return false; }
