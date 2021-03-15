@@ -8,6 +8,7 @@ protected:
 	int idd() const override
 	{ 
 		return IDD_DIALOG1; 
+
 	}
 	bool on_init_dialog() override
 	{
