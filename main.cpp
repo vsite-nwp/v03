@@ -2,6 +2,7 @@
 #include "nwpdlg.h"
 #include "resource.h"
 #include <stdexcept>
+#include <iostream>
 
 class main_dialog : public vsite::nwp::dialog 
 {
@@ -22,8 +23,8 @@ protected:
 	bool on_ok() override
 	{
 		try {
-			get_int(IDC_EDIT1);
-			get_int(IDC_EDIT2);
+			tocka.x = get_int(IDC_EDIT1);
+			tocka.y = get_int(IDC_EDIT2);
 		}
 		catch (std::runtime_error& ex) {
 			return false;
