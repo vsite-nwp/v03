@@ -1,6 +1,7 @@
 #include <windows.h>
 #include "nwpdlg.h"
 #include "resource.h"
+#include <stdexcept>
 
 class main_dialog : public vsite::nwp::dialog 
 {
@@ -11,26 +12,32 @@ protected:
 	}
 	bool on_init_dialog() override
 	{
-		// TODO: set initial values to edit controls
+		set_int(IDC_EDIT1, coordinates.x);
+		set_int(IDC_EDIT2, coordinates.y);
 		return true;
 	}
 	bool on_ok() override
 	{
-		// TODO: get current values from edit controls
-		// TODO: if not valid return false
+		try {
+			coordinates.x = get_int(IDC_EDIT1);
+			coordinates.y = get_int(IDC_EDIT2);
+		}
+		catch (std::runtime_error exception) { return false; }
 		return true;
 	}
 	void on_cancel() override { }
 	bool on_command(int id, int code) override { return false; }
+public:
+	POINT coordinates;
 };
 
 int WINAPI WinMain(HINSTANCE instance, HINSTANCE, LPSTR, int)
 {
 	main_dialog dlg;
-	// TODO: find current mouse position and transfer to dialog
+	GetCursorPos(&dlg.coordinates);
 	if(dlg.do_modal(instance, 0) == IDOK)
 	{
-		// TODO: set mouse position to coordinates from dialog
+		SetCursorPos(dlg.coordinates.x, dlg.coordinates.y);
 	}
 	return 0;
 }
