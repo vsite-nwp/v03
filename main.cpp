@@ -36,7 +36,7 @@ protected:
 int WINAPI WinMain(HINSTANCE instance, HINSTANCE, LPSTR, int)
 {
 	main_dialog dlg;
-	
+	GetCursorPos(&dlg.point);
 	if(dlg.do_modal(instance, 0) == IDOK)
 	{
 		SetCursorPos(dlg.point.x, dlg.point.y);
