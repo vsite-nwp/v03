@@ -48,5 +48,6 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE, LPSTR, int)
 		
 		SetCursorPos(dlg.c.x, dlg.c.y);
 	}
+
 	return 0;
 }
