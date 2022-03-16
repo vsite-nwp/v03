@@ -15,15 +15,12 @@ protected:
 	}
 	bool on_init_dialog() override
 	{
-		// TODO: set initial values to edit controls
 		set_int(IDC_EDIT1, point.x);
 		set_int(IDC_EDIT2, point.y);
 		return true;
 	}
 	bool on_ok() override
 	{
-		// TODO: get current values from edit controls
-		// TODO: if not valid return false
 		try {
 			point.x = get_int(IDC_EDIT1);
 			point.y = get_int(IDC_EDIT2);
@@ -44,7 +41,6 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE, LPSTR, int)
 	GetCursorPos(&dlg.point);
 	if(dlg.do_modal(instance, 0) == IDOK)
 	{
-		// TODO: set mouse position to coordinates from dialog
 		SetCursorPos(dlg.point.x, dlg.point.y);
 	}
 	return 0;
