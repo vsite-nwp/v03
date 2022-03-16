@@ -4,6 +4,8 @@
 
 class main_dialog : public vsite::nwp::dialog 
 {
+	public:
+	POINT pos;
 protected:
 	int idd() const override
 	{ 
@@ -11,13 +13,21 @@ protected:
 	}
 	bool on_init_dialog() override
 	{
-		// TODO: set initial values to edit controls
+		set_int(IDC_EDIT1, pos.x);
+		set_int(IDC_EDIT2, pos.y);
 		return true;
 	}
 	bool on_ok() override
 	{
-		// TODO: get current values from edit controls
-		// TODO: if not valid return false
+		try
+		{
+			get_int(IDC_EDIT1);
+			get_int(IDC_EDIT2);
+		}
+		catch (XCtrl)//(...)
+		{
+			return false;
+		}
 		return true;
 	}
 	void on_cancel() override { }
@@ -27,10 +37,13 @@ protected:
 int WINAPI WinMain(HINSTANCE instance, HINSTANCE, LPSTR, int)
 {
 	main_dialog dlg;
-	// TODO: find current mouse position and transfer to dialog
+	GetCursorPos(&dlg.pos);
 	if(dlg.do_modal(instance, 0) == IDOK)
 	{
-		// TODO: set mouse position to coordinates from dialog
+		SetCursorPos(
+			dlg.pos.x,
+			dlg.pos.y
+		);
 	}
 	return 0;
 }

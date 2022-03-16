@@ -1,6 +1,8 @@
 
 namespace vsite::nwp {
 
+class XCtrl {};
+
 class dialog
 {
 	HWND hw;
@@ -11,7 +13,7 @@ public:
 protected:
 //	operations
 	void set_int(int id_ctrl, int val);
-	int get_int(int id_ctrl); // throws std::runtime_error
+	int get_int(int id_ctrl) throw (XCtrl);
 
 //	overridables
 	virtual int idd() const = 0;
