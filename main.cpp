@@ -28,12 +28,7 @@ protected:
 			point.x = get_int(IDC_EDIT1);
 			point.y = get_int(IDC_EDIT2);
 		}
-		/*catch (const bool runtime_error) {
-			return false;
-		}*/
-		catch (std::runtime_error& e) {
-			//cout << e.what() << "\n";
-			//MessageBox(hw, e.wath(), "NWP", MB_ICONWARNING | MB_OK);
+		catch (runtime_error& e) {
 			return false;
 		}
 		
