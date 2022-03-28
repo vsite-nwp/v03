@@ -1,6 +1,9 @@
 #include <windows.h>
 #include "nwpdlg.h"
 #include "resource.h"
+#include <stdexcept>
+
+using namespace std;
 
 class main_dialog : public vsite::nwp::dialog 
 {
@@ -25,7 +28,12 @@ protected:
 			point.x = get_int(IDC_EDIT1);
 			point.y = get_int(IDC_EDIT2);
 		}
-		catch (bool) {
+		/*catch (const bool runtime_error) {
+			return false;
+		}*/
+		catch (std::runtime_error& e) {
+			//cout << e.what() << "\n";
+			//MessageBox(hw, e.wath(), "NWP", MB_ICONWARNING | MB_OK);
 			return false;
 		}
 		
@@ -38,7 +46,7 @@ protected:
 int WINAPI WinMain(HINSTANCE instance, HINSTANCE, LPSTR, int)
 {
 	main_dialog dlg;
-	if (GetCursorPos(&dlg.point)) {}
+	GetCursorPos(&dlg.point);
 	if(dlg.do_modal(instance, 0) == IDOK)
 	{
 		SetCursorPos(dlg.point.x, dlg.point.y);
