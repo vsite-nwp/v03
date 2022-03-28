@@ -24,7 +24,7 @@ protected:
 			get_int(IDC_EDIT1);
 			get_int(IDC_EDIT2);
 		}
-		catch (...)//(XCtrl)
+		catch (vsite::nwp::XCtrl)
 		{
 			return false;
 		}
