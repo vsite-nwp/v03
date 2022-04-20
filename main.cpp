@@ -1,14 +1,9 @@
 #include <windows.h>
 #include "nwpdlg.h"
 #include "resource.h"
-#include <exception>
 #include <stdexcept>
 
-class runtime_error{
-public:
-	std::string s;
-	runtime_error(const char *s): s(s){}
-};
+
 class main_dialog : public vsite::nwp::dialog 
 {
 public:
