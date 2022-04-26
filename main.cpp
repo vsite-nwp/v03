@@ -15,7 +15,7 @@ protected:
 	{
 		set_int(IDC_EDIT1, pos.x);
 		set_int(IDC_EDIT2, pos.y);
-		// TODO: set initial values to edit controls
+		
 		return true;
 	}
 	bool on_ok() override
@@ -30,8 +30,7 @@ protected:
 			return false;
 		}
 		return true;
-		// TODO: get current values from edit controls
-		// TODO: if not valid return false
+		
 		return true;
 	}
 	void on_cancel() override { }
