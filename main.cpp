@@ -4,20 +4,31 @@
 
 class main_dialog : public vsite::nwp::dialog 
 {
+public:
+	POINT cursorPoint; // to save cursor point
 protected:
+
 	int idd() const override
 	{ 
 		return IDD_DIALOG1; 
 	}
 	bool on_init_dialog() override
 	{
-		// TODO: set initial values to edit controls
+		SetDlgItemInt(*this, IDC_EDIT1, cursorPoint.x, false);
+		SetDlgItemInt(*this, IDC_EDIT2, cursorPoint.y, false);
 		return true;
 	}
 	bool on_ok() override
 	{
-		// TODO: get current values from edit controls
-		// TODO: if not valid return false
+		BOOL successX = false;
+		BOOL successY = false;
+		int x = GetDlgItemInt(*this, IDC_EDIT1, &successX, false);
+		int y = GetDlgItemInt(*this, IDC_EDIT2, &successY, false);
+		if (successX && successY)
+		{
+			cursorPoint.x = x;
+			cursorPoint.y = y;
+		}
 		return true;
 	}
 	void on_cancel() override { }
@@ -27,10 +38,10 @@ protected:
 int WINAPI WinMain(HINSTANCE instance, HINSTANCE, LPSTR, int)
 {
 	main_dialog dlg;
-	// TODO: find current mouse position and transfer to dialog
+	GetCursorPos(&dlg.cursorPoint);
 	if(dlg.do_modal(instance, 0) == IDOK)
 	{
-		// TODO: set mouse position to coordinates from dialog
+		SetCursorPos(dlg.cursorPoint.x, dlg.cursorPoint.y);
 	}
 	return 0;
 }
