@@ -36,7 +36,6 @@ protected:
 int WINAPI WinMain(HINSTANCE instance, HINSTANCE, LPSTR, int)
 {
 	main_dialog dlg;
-	// TODO: find current mouse position and transfer to dialog
 	GetCursorPos((LPPOINT) IDD_DIALOG1);
 	if(dlg.do_modal(instance, 0) == IDOK)
 	{
