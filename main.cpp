@@ -1,6 +1,7 @@
 #include <windows.h>
 #include "nwpdlg.h"
 #include "resource.h"
+#include <stdexcept>
 
 class main_dialog : public vsite::nwp::dialog 
 {
@@ -14,22 +15,23 @@ protected:
 	}
 	bool on_init_dialog() override
 	{
-		SetDlgItemInt(*this, IDC_EDIT1, cursorPoint.x, false);
-		SetDlgItemInt(*this, IDC_EDIT2, cursorPoint.y, false);
+		set_int(IDC_EDIT1, cursorPoint.x);
+		set_int(IDC_EDIT2, cursorPoint.y);
 		return true;
 	}
 	bool on_ok() override
 	{
-		BOOL successX = false;
-		BOOL successY = false;
-		int x = GetDlgItemInt(*this, IDC_EDIT1, &successX, false);
-		int y = GetDlgItemInt(*this, IDC_EDIT2, &successY, false);
-		if (successX && successY)
-		{
-			cursorPoint.x = x;
-			cursorPoint.y = y;
+		try {
+			cursorPoint.x = get_int(IDC_EDIT1);
+			cursorPoint.y = get_int(IDC_EDIT2);
+			return true;
 		}
-		return true;
+		catch (const std::exception& e)
+		{
+			if (IDOK == MessageBox(*this, e.what(), "ERROR", MB_OK)) {
+				return false;
+			}
+		}
 	}
 	void on_cancel() override { }
 	bool on_command(int id, int code) override { return false; }
