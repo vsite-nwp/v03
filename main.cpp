@@ -28,9 +28,9 @@ protected:
 		}
 		catch (const std::exception& e)
 		{
-			if (IDOK == MessageBox(*this, e.what(), "ERROR", MB_OK)) {
-				return false;
-			}
+			// Just inform about the error
+			MessageBox(*this, e.what(), "ERROR", MB_OK);
+			return false;
 		}
 	}
 	void on_cancel() override { }
