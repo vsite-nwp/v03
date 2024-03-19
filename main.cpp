@@ -1,7 +1,6 @@
 #include <windows.h>
 #include "nwpdlg.h"
 #include "resource.h"
-#include <typeinfo>
 #include <iostream>
 
 class main_dialog : public vsite::nwp::dialog 
@@ -27,8 +26,6 @@ protected:
 			p.y = get_int(IDC_EDIT2);
 			// : get current values from edit controls
 			// : if not valid return false
-			if (typeid(p.x) == typeid(int) || typeid(p.y) == typeid(int))
-				throw std::exception();
 		}
 		catch (std::exception& e)
 		{
