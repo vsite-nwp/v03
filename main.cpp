@@ -15,7 +15,7 @@ protected:
 	}
 	bool on_init_dialog() override
 	{
-		// TODO: set initial values to edit controls
+		// : set initial values to edit controls
 		set_int(IDC_EDIT1, p.x);
 		set_int(IDC_EDIT2, p.y);
 		return true;
@@ -25,8 +25,8 @@ protected:
 		try {
 			p.x = get_int(IDC_EDIT1);
 			p.y = get_int(IDC_EDIT2);
-			// TODO: get current values from edit controls
-			// TODO: if not valid return false
+			// : get current values from edit controls
+			// : if not valid return false
 			if (typeid(p.x) == typeid(int) || typeid(p.y) == typeid(int))
 				throw std::exception();
 		}
