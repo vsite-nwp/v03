@@ -1,7 +1,6 @@
 #include <windows.h>
 #include "nwpdlg.h"
 #include "resource.h"
-#include <exception>
 #include <iostream>
 
 class main_dialog : public vsite::nwp::dialog 
@@ -29,7 +28,6 @@ protected:
 			cursorPosition.y = dialog::get_int(IDC_EDIT2);
 		}
 		catch (const std::runtime_error& ex) {
-			std::cout << "Error: " << ex.what() << std::endl;
 			return false;
 		}
 		return true;
@@ -44,9 +42,7 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE, LPSTR, int)
 {
 	main_dialog dlg;
 	//  find current mouse position and transfer to dialog
-	POINT p;
-	GetCursorPos(&p);
-	dlg.cursorPosition = p;
+	GetCursorPos(&dlg.cursorPosition);
 	
 	if(dlg.do_modal(instance, 0) == IDOK)
 	{
