@@ -28,16 +28,14 @@ protected:
 			if (get_int(IDC_EDIT1) < 0 || get_int(IDC_EDIT2) < 0) {
 				return false;
 			}
-			get_int(IDC_EDIT1);
-			get_int(IDC_EDIT2);
+			coords.x = get_int(IDC_EDIT1);
+			coords.y = get_int(IDC_EDIT2);
+			return true;
 		}
 		catch(const std::exception&)
 		{
 			return false;
 		}
-		coords.x= get_int(IDC_EDIT1);
-		coords.y= get_int(IDC_EDIT2);
-		return true;
 	}
 	void on_cancel() override { }
 	bool on_command(int id, int code) override { return false; }
