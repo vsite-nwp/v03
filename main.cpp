@@ -25,12 +25,14 @@ protected:
 		// if not valid return false
 		try
 		{
-			if (get_int(IDC_EDIT1) < 0 || get_int(IDC_EDIT2) < 0) {
-				return false;
-			}
 			coords.x = get_int(IDC_EDIT1);
 			coords.y = get_int(IDC_EDIT2);
-			return true;
+			if (coords.x < 0 || coords.y < 0) {
+				return false;
+			}
+			else {
+				return true;
+			}
 		}
 		catch(const std::exception&)
 		{
